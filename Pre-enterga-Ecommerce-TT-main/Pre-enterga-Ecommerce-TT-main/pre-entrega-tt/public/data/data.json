@@ -1,0 +1,62 @@
+[
+       {
+      "id": 1,
+      "nombre": "Chaleco",
+      "imagen": "../src/assets/img/item8.jpg",
+      "descripcion": "Chaleco de color verde con detalle en amarillo",
+      "precio": 15,
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "nombre": "Conjunto de Jean",
+      "imagen": "../src/assets/img/item2.jpg",
+      "descripcion": "Remera rayada y pantalon de jean azul",
+      "precio": 20,
+      "stock": 15
+    },
+    {
+      "id": 3,
+      "nombre": "Remera Rosa",
+      "imagen": "../src/assets/img/item3.jpg",
+      "descripcion": "Remera de color rosa con detalle en cuello y mangas",
+      "precio": 150,
+      "stock": 1
+
+    },
+    
+    {
+      "id": 5,
+      "nombre": "Saco negro",
+      "imagen": "../src/assets/img/item4.jpg",
+      "descripcion": "Saco negro con botones de color blanco y bies al tono",
+      "precio": 118,
+      "stock": 10
+    },
+    {
+      "id": 6,
+      "nombre": "Fresh Kisses",
+      "imagen": "../src/assets/img/item9.jpg",
+      "descripcion": "Golosina para el consentido de la casa",
+      "precio": 141,
+      "stock": 16
+
+    },
+    {
+      "id": 7,
+      "nombre": "Builders pote",
+      "imagen": "../src/assets/img/item10.jpg",
+      "descripcion": "Algo rico para tu mascota",
+      "precio": 114,
+      "stock": 18
+    },
+     
+    {
+      "id": 8,
+      "nombre": "Premium",
+      "imagen": "../src/assets/img/item13.jpg",
+      "descripcion": "Ni idea que es",
+      "precio": 147,
+      "stock": 12
+    }
+]
