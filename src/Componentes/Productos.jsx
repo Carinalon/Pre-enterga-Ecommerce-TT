@@ -26,7 +26,7 @@ const Productos = ({producto, agregarCart}) => {
         <span>{cantidad}</span>
         <button className='qtyButton' onClick={increase}>+</button>
       </div>
-      <button onClick={() => agregarCart(producto)}>Agregar al carrito</button>
+      <button className='btnCart' onClick={() => agregarCart(producto)}>Agregar al carrito</button>
       
       <Link to={`/productos/${producto.id}`} className='detalle__prod'>Ver mas</Link>
 

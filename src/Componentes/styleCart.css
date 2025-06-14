@@ -54,3 +54,13 @@
     background-size: cover;
     cursor: pointer;
 }
+
+.btnCart{
+    border-radius: 15px;
+    padding: 10px;
+    border-color: #4d4f5236;
+    background-color: #4d4f52b4;
+    color: #fff;
+    cursor: pointer;
+
+}
