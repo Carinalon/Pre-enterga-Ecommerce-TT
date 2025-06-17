@@ -27,30 +27,31 @@ export const CartProvider = ({ children }) => {
     }, [])
 
     const handleAddToCart = (producto) => {
-    const productInCart = cart.find((item) => item.id === producto.id);
-    if (productInCart) {
-
-      setCart(cart.map((item) => item.id === producto.id ? { ...item, quantity:item.quantity + 1 } : item));
-    } else {
-      setCart([...cart, { ...producto, quantity:1 }]);
-    }
+      const productInCart = cart.find(item => item.id === producto.id)
+      if (productInCart) {
+        setCart(cart.map((item) => item.id === producto.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item));
+      } else {
+        setCart([...cart, { ...producto, quantity: 1 }]);
+      }
     };
 
-    const handleDeleteFromCart=(product)=>{
-
-    setCart(preVCart =>{
-      return preVCart.map(item => {
-        if(item.id=== product.id){
-          if(item.quantity > 1){
-            return {...item,quantity:item.quantity-1}
-          }else{
-            return null
-          }
-        }else{
-          return item
-        }
-      }).filter(item=> item != null)
-    })
+    const handleDeleteFromCart = (product) => {
+      setCart((preVCart) => {  //prev cart verifica que hay en el carrito
+        return preVCart.map((item) => {
+            if (item.id === product.id) {
+              if (item.quantity > 1) {
+                return { ...item, quantity: item.quantity - 1 };
+              } else {
+                return null;
+              }
+            } else {
+              return item;
+            }
+          })
+          .filter((item) => item != null)
+      });
     };
 
     return (

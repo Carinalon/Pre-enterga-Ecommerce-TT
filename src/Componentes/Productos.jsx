@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 
 const Productos = ({producto, agregarCart}) => {
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState(1)
+  const [stock , setStock] = useState(producto.stock)
 
-  const increase = () => setCantidad (prev => (prev < producto.stock ? prev + 1 : prev));
+  const increase = () => setCantidad (prev => (prev != stock ? prev + 1 : prev));
   const decrease = () => setCantidad (prev =>  (prev > 1 ? prev - 1 : prev));
   
-
 
   return (
     <section className='card'>

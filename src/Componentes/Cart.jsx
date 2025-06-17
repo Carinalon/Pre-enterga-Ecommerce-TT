@@ -15,7 +15,8 @@ const Cart = ({cartItems, isOpen, onClose, borrarProducto }) => {
          (<ul className="cart__items">
             {cartItems.map((item) => (
                 <li key={item.id} style={{color:"black"}}>
-                  {item.nombre} - ${item.precio}
+                  {item.nombre} - ${item.precio} - Cant: {item.quantity} 
+
                   <button className='tacho' onClick={()=> borrarProducto(item)}>
                   <img src='/public/trash-can.svg' alt="tacho de basura"/></button>
                 </li>
@@ -23,6 +24,7 @@ const Cart = ({cartItems, isOpen, onClose, borrarProducto }) => {
           </ul>
         )}
       </div>
+    
     </div>
   );
 };
