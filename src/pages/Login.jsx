@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+
 
 const Login = () => {
   const { setIsAuth } = useContext(CartContext);
@@ -10,10 +11,9 @@ const Login = () => {
   const [error, setError] = useState({});
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    //esto analiza que no este vacio
+  const handleSubmit = async (e) => { //esto analiza que no este vacio
     e.preventDefault();
-    let validationErrors = {};
+    let validationErrors = {};  //objeto vacio que va a almacenar claves
     if (!email) validationErrors.email = "El email es obligatorio";
     if (!password) validationErrors.password = "La contraseña es obligatoria";
 
@@ -24,37 +24,35 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch("data/users.json");
+      const res = await fetch('data/users.json');
       const users = await res.json();
 
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
 
-      if (foundUser) {
+      if (!foundUser) {
         setError({ email: "credenciales inválidas" });
       } else {
-        if (foundUser.role === "admin") {
+        console.log('User role:', foundUser.role);
+
+        if (foundUser.role === 'admin') {
           setIsAuth(true);
-          navigate("/admin");
+          navigate('/admin');
         } else {
-          setIsAuth(true);
           navigate("/");
         }
       }
-    } catch (err) {
+    } catch(err) {
+      console.error('Error fetching users:', err);
       setError({ email: "Error al iniciar sesión, intente más tarde" });
     }
   };
   return (
     <form
       onSubmit={handleSubmit}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        maxWidth: "400px",
-        margin: "auto",
+      style={{display: "flex", flexDirection: "column", gap: "1rem",
+        maxWidth: "400px", margin: "auto",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -105,8 +103,7 @@ const Login = () => {
           }}
         />
         {error.password && (
-          <div
-            style={{ color: "red", fontSize: "0.875rem", marginTop: "0.25rem" }}
+          <div style={{ color: "red", fontSize: "0.875rem", marginTop: "0.25rem" }}
           >
             {error.password}
           </div>
@@ -116,7 +113,7 @@ const Login = () => {
       <button
         type="submit"
         style={{
-          backgroundColor: "#007bff",
+          backgroundColor: "#333",
           color: "white",
           padding: "0.75rem",
           border: "none",
@@ -124,9 +121,7 @@ const Login = () => {
           cursor: "pointer",
           fontSize: "1rem",
         }}
-      >
-        Enviar
-      </button>
+      >Enviar</button>
     </form>
   );
 };

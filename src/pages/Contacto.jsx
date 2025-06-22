@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../Componentes/estaticos/Header'
 import Footer from '../Componentes/estaticos/Footer'
-import FormulariosControlados from '../Componentes/FormulariosControlados'
+
 
 const Contacto = ({cart, borrarProducto}) => {
   return (
@@ -24,7 +24,7 @@ const Contacto = ({cart, borrarProducto}) => {
           <button type="submit">Enviar</button>
         </form>
       </div>
-      <FormulariosControlados />
+      
 
       <Footer />
     </>

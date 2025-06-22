@@ -14,14 +14,9 @@ const DetallesProductos = ({productos}) => {
 
   return (
     <>
-   
-   <div>
       <h1>Detalle del producto: {id}</h1>
       {product ? (<h2>{product.nombre} {product.descripcion} </h2>) : (<p>Producto no encontrado</p>)}
-    </div>
      
-   
-      
     </>
   )
 }

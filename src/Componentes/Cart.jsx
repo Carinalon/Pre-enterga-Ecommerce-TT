@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
-import { CartContext } from '../context/CartContext'
+import React  from 'react';
 import "./styleCart.css"
+import { CartContext } from '../context/CartContext'
+
 
 const Cart = ({cartItems, isOpen, onClose, borrarProducto }) => {
   
+
   return (
     <div className={`cart ${isOpen ? 'open' : ''}`}>
       <div className='cart__header'>

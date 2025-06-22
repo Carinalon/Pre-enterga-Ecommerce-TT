@@ -1,11 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './styleProductos.css'
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 const Productos = ({producto, agregarCart}) => {
-  const [cantidad, setCantidad] = useState(1)
+  const [cantidad, setCantidad] = useState(producto.cantidad)
   const [stock , setStock] = useState(producto.stock)
 
   const increase = () => setCantidad (prev => (prev != stock ? prev + 1 : prev));

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./stylesEstatico.css";
 import Cart from '../Cart.jsx';
+import { CartContext } from "../../context/CartContext.jsx";
 
 const Header = ({cartItems, borrarProducto}) => {
   const [isCartOpen, setCartOpen] = useState(false);
+  const { cart,  productos, cargando, error, handleAddToCart, handleDeleteFromCart, isAuthenticated } = useContext(CartContext);
 
   return (
     <header>
@@ -21,10 +23,16 @@ const Header = ({cartItems, borrarProducto}) => {
             <Cart borrarProducto={borrarProducto} cartItems={cartItems} isOpen={isCartOpen} onClose={() => 
             setCartOpen(false)}/>
           </li>
+          <li className='btnLogin'>
+              <Link to='/login' className='link'><i className="fa-solid fa-right-to-bracket"></i></Link>
+            </li>
+            <li className='btnAdmin'>
+              <Link to='/admin' className='link'><i className="fa-solid fa-user-tie"></i></Link>
+            </li>
         </ul>
       </nav>
     </header>
-  );
+  )
 };
 
 export default Header;

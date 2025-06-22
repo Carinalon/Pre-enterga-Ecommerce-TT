@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import FormularioProducto from "../Componentes/FormularioProducto";
 
 const Admin = () => {
     const [products, setProducts] = useState([]);
     const [form, setForm] = useState({ id: null, name: "", price: "" });
     const [loading, setLoading] = useState(true);
+    const [open, setOpen] = useState(false);
 
 
     useEffect(() => {
@@ -21,6 +23,26 @@ const Admin = () => {
                 setLoading(false);
             });
     }, []);
+
+    const agregarProducto = async (products) => {
+        try{
+           const respuesta = await fetch('https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos' ,{
+              method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(products)
+           }) 
+           if(!respuesta.ok){
+            throw new Error("Error al agregar el producto");
+           } 
+
+        }catch(error){
+            console.error("Error al agregar el producto:", error);
+
+        }
+
+    }
 
     return (
         <div className="container">
@@ -41,25 +63,7 @@ const Admin = () => {
                         </ul>
                     </nav>
                     <h1 className="title">Panel Administrativo</h1>
-                    <form className="form">
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Nombre del producto"
-                            className="input"
-                            required
-                        />
-                        <input
-                            type="number"
-                            name="price"
-                            placeholder="Precio del producto"
-                            className="input"
-                            required
-                        />
-                        <button type="submit" className="button">
-                            {form.id ? "Editar" : "Crear"}
-                        </button>
-                    </form>
+       
                     <ul className="list">
                         {products.map((product) => (
                             <li key={product.id} className="listItem">
@@ -80,6 +84,8 @@ const Admin = () => {
                     </ul>
                 </>
             )}
+            <button onClick={() => setOpen(true)}>Agregar producto</button>
+            {open && (<FormularioProducto onAgregar={agregarProducto}/>)}
         </div>
     );
 };
