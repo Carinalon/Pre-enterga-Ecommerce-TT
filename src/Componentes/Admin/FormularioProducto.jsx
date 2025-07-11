@@ -5,7 +5,9 @@ const FormularioProducto = ({onAgregar}) => {
       {
         nombre: '',
         precio: '',
-        descripcion: ''
+        descripcion: '',
+        stock: '',
+        imagen: '',
     })
     const [errores, setErrores] = useState({}); 
 
@@ -35,8 +37,8 @@ const FormularioProducto = ({onAgregar}) => {
         if (!validarFormulario()) {
             return;
         }
-        onAgregar(producto); // Llamada a la función para agregar el producto
-        setProducto({ nombre: '', precio: '', descripcion: '' }); // Limpiar el formulario
+        onAgregar(producto); 
+        setProducto({ nombre: '', precio: '', descripcion: '' }); 
     };
 
   return (

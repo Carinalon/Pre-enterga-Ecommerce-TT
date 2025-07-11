@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import AcercaDe from './pages/AcercaDe'
 import GaleriaDeProductos from './pages/GaleriaDeProductos'
@@ -9,40 +9,35 @@ import NotFound from './pages/NotFound'
 import Admin from './pages/Admin'
 import DetallesProductos from './Componentes/DetallesProductos'
 import Login from './pages/Login'
-import RutaProtegida from './auth/RutasProtegidas'
+import RutaProtegida from './Rutas/RutasProtegidas'
 import { CartContext } from './context/CartContext'
 
 
 function App() {
-const { cart, productos, cargando, error, handleAddToCart, handleDeleteFromCart, isAuthenticated  } = useContext(CartContext)
-
+  const { isAuthenticated } = useContext(CartContext);
 
   return (
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-      <Router>
-        <Routes>
+      <Route path="/acercade" element={<AcercaDe />} />
 
-          <Route path="/" element={<Home borrarProducto={handleDeleteFromCart} agregarCart={handleAddToCart} cart={cart} productos={productos} cargando={cargando}/>}/> 
+      <Route path="/productos" element={<GaleriaDeProductos />} />
 
-          <Route path="/acercade" element={<AcercaDe borrarProducto={handleDeleteFromCart} cart={cart} />}/>
+      <Route path="/productos/:id" element={<DetallesProductos />} />
 
-          <Route path="/productos" element={<GaleriaDeProductos borrarProducto={handleDeleteFromCart} agregarCart={handleAddToCart} cart={cart} productos={productos} cargando={cargando}/>}/>
+      <Route path="/contacto" element={<Contacto />} />
 
-          <Route path='/productos/:id' element={<DetallesProductos productos={productos} />} />
-               
-          <Route path="/contacto" element={<Contacto borrarProducto={handleDeleteFromCart} cart={cart} />}/>
-          
-          <Route path='/admin' element={<RutaProtegida isAuthenticated={isAuthenticated}> <Admin /> </RutaProtegida>} />
+      <Route path="/admin" element={
+          <RutaProtegida isAuthenticated={isAuthenticated}>
+            <Admin />
+          </RutaProtegida>}/>
 
-          <Route path='/login' element={<Login />} />
+      <Route path="/login" element={<Login />} />
 
-          <Route path="*" element={<NotFound/>}/>
-
-        </Routes>
-        
-      </Router>
-   
-  )
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;

@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
   const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => { //esto analiza que no este vacio
     e.preventDefault();
@@ -32,20 +33,17 @@ const Login = () => {
       );
 
       if (!foundUser) {
-        setError({ email: "credenciales inválidas" });
+        setError({ email: 'credenciales inválidas' });
       } else {
-        console.log('User role:', foundUser.role);
-
         if (foundUser.role === 'admin') {
           setIsAuth(true);
           navigate('/admin');
         } else {
-          navigate("/");
+          navigate('/');
         }
       }
     } catch(err) {
-      console.error('Error fetching users:', err);
-      setError({ email: "Error al iniciar sesión, intente más tarde" });
+      setError({ email: 'Error al iniciar sesión, intente más tarde' });
     }
   };
   return (

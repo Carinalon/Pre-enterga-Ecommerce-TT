@@ -3,10 +3,10 @@ import Header from '../Componentes/estaticos/Header'
 import Footer from '../Componentes/estaticos/Footer'
 import './styleAcercaD.css'
 
-const AcercaDe = ({cart, borrarProducto}) => {
+const AcercaDe = () => {
   return (
     <>
-      <Header borrarProducto={borrarProducto} cartItems={cart} />
+      <Header />
       <main className="sobremi">
         <h1>Acerca de</h1>
         <p className="texto">
