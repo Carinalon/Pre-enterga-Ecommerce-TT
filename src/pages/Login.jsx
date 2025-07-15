@@ -1,56 +1,21 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
-
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const { setIsAuth } = useContext(CartContext);
+  const {email, setEmail, password, setPassword, handleSubmit, error } = useAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState({});
-  const navigate = useNavigate();
   
-
-  const handleSubmit = async (e) => { //esto analiza que no este vacio
-    e.preventDefault();
-    let validationErrors = {};  //objeto vacio que va a almacenar claves
-    if (!email) validationErrors.email = "El email es obligatorio";
-    if (!password) validationErrors.password = "La contraseña es obligatoria";
-
-    if (Object.keys(validationErrors).length > 0) {
-      // object.keys devuelve un array con las claves del objeto
-      setError(validationErrors);
-      return;
-    }
-
-    try {
-      const res = await fetch('data/users.json');
-      const users = await res.json();
-
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (!foundUser) {
-        setError({ email: 'credenciales inválidas' });
-      } else {
-        if (foundUser.role === 'admin') {
-          setIsAuth(true);
-          navigate('/admin');
-        } else {
-          navigate('/');
-        }
-      }
-    } catch(err) {
-      setError({ email: 'Error al iniciar sesión, intente más tarde' });
-    }
-  };
   return (
     <form
       onSubmit={handleSubmit}
-      style={{display: "flex", flexDirection: "column", gap: "1rem",
-        maxWidth: "400px", margin: "auto",
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        maxWidth: "400px",
+        margin: "auto",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -101,7 +66,8 @@ const Login = () => {
           }}
         />
         {error.password && (
-          <div style={{ color: "red", fontSize: "0.875rem", marginTop: "0.25rem" }}
+          <div
+            style={{ color: "red", fontSize: "0.875rem", marginTop: "0.25rem" }}
           >
             {error.password}
           </div>
@@ -119,7 +85,9 @@ const Login = () => {
           cursor: "pointer",
           fontSize: "1rem",
         }}
-      >Enviar</button>
+      >
+        Enviar
+      </button>
     </form>
   );
 };

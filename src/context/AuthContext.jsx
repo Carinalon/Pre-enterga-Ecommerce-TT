@@ -1,31 +1,26 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "./CartContext";
+import { CartContext } from './CartContext';
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [email, setEmail] = useState("");
+ const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState({});
   const navigate = useNavigate();
   const { setIsAuth } = useContext(CartContext);
 
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAuth") === "true";
-    if (isAuthenticated) {
-      setIsAuth(true);
-      navigate("/admin");
-    }
-  }, []);
-
   const handleSubmit = async (e) => {
+    //esto analiza que no este vacio
     e.preventDefault();
-    let validationErrors = {};
-    if (!email) validationErrors.email = "Email es requerido";
-    if (!password) validationErrors.password = "Password es requerido";
+    let validationErrors = {}; //objeto vacio que va a almacenar claves
+    if (!email) validationErrors.email = "El email es obligatorio";
+    if (!password) validationErrors.password = "La contraseña es obligatoria";
 
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+      // object.keys devuelve un array con las claves del objeto
+      setError(validationErrors);
       return;
     }
 
@@ -38,29 +33,23 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (!foundUser) {
-        setErrors({ email: "credenciales invalidas" });
+        setError({ email: "credenciales inválidas" });
       } else {
-        console.log("User role:", foundUser.role);
-
         if (foundUser.role === "admin") {
           setIsAuth(true);
-          localStorage.setItem("isAuth", true);
           navigate("/admin");
         } else {
           navigate("/");
         }
       }
     } catch (err) {
-      console.error("Error fetching users:", err);
-      setErrors({
-        email: "Algo salió mal. Por favor, inténtalo de nuevo más tarde.",
-      });
+      setError({ email: "Error al iniciar sesión, intente más tarde" });
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ email, setEmail, password, setPassword, handleSubmit, errors }}
+      value={{ email, setEmail, password, setPassword, handleSubmit, error }}
     >
       {children}
     </AuthContext.Provider>

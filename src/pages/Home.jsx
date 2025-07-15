@@ -7,7 +7,7 @@ import { CartContext } from '../context/CartContext';
 
 
 
-const Home = ({ handleAddToCart}) => {
+const Home = () => {
 
   const {cargando} = useContext(CartContext)
 

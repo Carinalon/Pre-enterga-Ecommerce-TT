@@ -1,23 +1,27 @@
-import React from 'react'
-import Header from '../Componentes/estaticos/Header'
-import Footer from '../Componentes/estaticos/Footer'
-import ProductList from '../Componentes/ProductList'
-import loading from '../assets/cargando.gif'
+import React from "react";
+import Header from "../Componentes/estaticos/Header";
+import Footer from "../Componentes/estaticos/Footer";
+import ProductList from "../Componentes/ProductList";
+import loading from "../assets/cargando.gif";
+import { CartContext } from "../context/CartContext";
 
-const GaleriaDeProductos = ({cart, productos, cargando, agregarCart, borrarProducto}) => {
+const GaleriaDeProductos = () => {
+
+  const {cargando} = useContext(CartContext)
+  
   return (
     <>
-      <Header borrarProducto={borrarProducto} cartItems={cart}/>
-        <h1 className='titulo__home' >Galería de productos</h1>
-      {cargando ? (
-        <img src={loading} alt="loading" />
-      ) : (
-        <ProductList agregarCart={agregarCart} productos={productos} />
-      )}
+      <Header />
+      <h1 className="titulo__home">Galería de productos</h1>
+      {
+        cargando ? <img src={loading} alt="loading" /> : 
+      
+      <ProductList />
+      }
 
       <Footer />
     </>
   );
 };
 
-export default GaleriaDeProductos
+export default GaleriaDeProductos;

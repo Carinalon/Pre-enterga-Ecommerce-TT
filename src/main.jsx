@@ -11,14 +11,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
-      <CartProvider>
-        <AdminProvider>
-          <AuthProvider>
-            <App/>
-            <ToastContainer/>
-          </AuthProvider>
-        </AdminProvider>
-      </CartProvider>
+      <AdminProvider>
+        <AuthProvider>
+          <CartProvider>
+            <App />
+            <ToastContainer />
+          </CartProvider>
+        </AuthProvider>
+      </AdminProvider>
     </Router>
   </StrictMode>
 );

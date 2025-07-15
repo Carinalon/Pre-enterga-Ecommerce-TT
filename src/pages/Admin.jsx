@@ -67,10 +67,7 @@ const Admin = () => {
                     onClick={() => {
                       setOpenEditor(true);
                       setSeleccionado(product);
-                    }}
-                  >
-                    Editar
-                  </button>
+                    }}>Editar</button>
 
                   <button
                     className="deleteButton"

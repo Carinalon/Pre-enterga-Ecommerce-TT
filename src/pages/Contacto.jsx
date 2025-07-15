@@ -3,10 +3,10 @@ import Header from '../Componentes/estaticos/Header'
 import Footer from '../Componentes/estaticos/Footer'
 
 
-const Contacto = ({cart, borrarProducto}) => {
+const Contacto = () => {
   return (
     <>
-      <Header borrarProducto={borrarProducto} cartItems={cart} />
+      <Header />
       <div className='contenedor__contacto' >
         <h1 className="titulo__home">Hola soy Emma</h1>
         <h2>Esta es mi pagina de contacto</h2>

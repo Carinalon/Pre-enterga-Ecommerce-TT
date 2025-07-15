@@ -3,7 +3,7 @@ import Productos from "./Productos";
 import { CartContext } from "../context/CartContext";
 
 
-const ProductList = ({ handleAddToCart }) => {
+const ProductList = () => {
   const { productos } = useContext(CartContext);
 
   return (

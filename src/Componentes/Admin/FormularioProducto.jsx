@@ -38,7 +38,11 @@ const FormularioProducto = ({onAgregar}) => {
             return;
         }
         onAgregar(producto); 
-        setProducto({ nombre: '', precio: '', descripcion: '' }); 
+        setProducto({ nombre: '',
+        precio: '',
+        descripcion: '',
+        stock: '',
+        imagen: '', });  //aca limpiamos el formulario
     };
 
   return (
@@ -56,7 +60,6 @@ const FormularioProducto = ({onAgregar}) => {
                     min="0" />
                     {errores.precio && <p style={{ color: 'red' }}>{errores.precio}</p>}
             </div>
-
             <div>
                 <label>Descripción:</label>
                 <textarea
@@ -66,6 +69,28 @@ const FormularioProducto = ({onAgregar}) => {
                     required
                 />
                 {errores.descripcion && <p style={{ color: 'red' }}>{errores.descripcion}</p>}
+            </div>
+            <div>
+                <label>Stock:</label>
+                <input
+                    type="number"
+                    name="stock"
+                    value={producto.stock || ''}
+                    onChange={handleChange}
+                    required
+                />
+                {errores.stock && <p style={{ color: 'red' }}>{errores.stock}</p>}
+            </div>
+            <div>
+                <label>Imagen URL:</label>
+                <input
+                    type="text"
+                    name="imagen"
+                    value={producto.imagen || ''}
+                    onChange={handleChange}
+                    required
+                />
+                {errores.imagen && <p style={{ color: 'red' }}>{errores.imagen}</p>}
             </div>
             <button type="submit">Agregar Producto</button>
         </form>
