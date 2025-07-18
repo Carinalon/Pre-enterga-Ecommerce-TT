@@ -26,7 +26,7 @@ const FormularioProducto = ({onAgregar}) => {
             nuevosErrores.precio = 'El precio debe ser mayor a 0.';
         }
         if (!producto.descripcion.trim() || producto.descripcion.length < 10) {
-            nuevosErrores.descripcion = 'La descripción debe tener al menos 10 caracteres.';
+            nuevosErrores.descripcion = 'La descripción debe tener al menos 6 caracteres.';
         }
         setErrores(nuevosErrores);
         return Object.keys(nuevosErrores).length === 0;

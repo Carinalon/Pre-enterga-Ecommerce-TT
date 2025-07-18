@@ -10,7 +10,12 @@ const Productos = ({producto}) => {
 
   const {handleAddToCart} = useContext(CartContext)
 
-  const increase = () => setCantidad (prev => (prev != producto.stock ? prev + 1 : prev));
+  const increase = () => {
+    if (cantidad + producto.cantidad <= producto.stock) {
+      setCantidad(prev => prev + 1);
+    }
+  };
+  // Aseguramos que la cantidad no baje de 1
   const decrease = () => setCantidad (prev =>  (prev > 1 ? prev - 1 : prev));
   
 

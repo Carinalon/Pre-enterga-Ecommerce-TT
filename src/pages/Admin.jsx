@@ -33,9 +33,7 @@ const Admin = () => {
           <nav>
             <ul className="nav">
               <li className="navItem">
-                <button
-                  className="navButton"
-                  onClick={() => {
+                <button className="navButton" onClick={() => {
                     setIsAuth(false);
                     navigate("/");
                     localStorage.removeItem("isAuth");
@@ -70,11 +68,7 @@ const Admin = () => {
                     }}>Editar</button>
 
                   <button
-                    className="deleteButton"
-                    onClick={() => eliminarProducto(product.id)}
-                  >
-                    Eliminar
-                  </button>
+                    className="deleteButton" onClick={() => eliminarProducto(product.id)}>Eliminar</button>
                 </div>
               </li>
             ))}
@@ -82,11 +76,8 @@ const Admin = () => {
         </>
       )}
       <button onClick={() => setOpen(true)}>Agregar producto nuevo</button>
-      {open && <FormularioProducto onAgregar={agregarProducto} />}
-      {openEditor && (
-        <FormularioEdicion
-          productoSeleccionado={seleccionado}
-          onActualizar={actulizarProducto}
+      {open && (<FormularioProducto onAgregar={agregarProducto} />)}
+      {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto}
         />
       )}
     </div>

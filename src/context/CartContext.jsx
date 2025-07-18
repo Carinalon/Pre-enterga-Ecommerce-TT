@@ -6,13 +6,13 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
+    return savedCart ? JSON.parse(savedCart) : []
   });
 
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
-  const [isAuthenticated, setIsAuth] = useState(""); // Para la autenticación
+  const [isAuthenticated, setIsAuth] = useState("false"); // Para la autenticación
   const [busqueda, setBusqueda] = useState(""); // Para la búsqueda de productos
 
   useEffect(() => {

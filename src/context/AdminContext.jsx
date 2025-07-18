@@ -47,7 +47,7 @@ export const AdminProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(producto),
+          body: JSON.stringify(producto)
         }
       );
       if (!respuesta.ok) {
@@ -73,25 +73,25 @@ export const AdminProvider = ({ children }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(producto),
+        body: JSON.stringify(producto)
       });
       if (!respuesta.ok) throw Error("Error al actualizar el producto");
-      const data = await respuesta.json();
+      const data = await respuesta.json()
       alert("Producto actualizado correctamente");
-      setOpenEditor(false);
-      setSeleccionado(null);
-      cargarProductos();
+      setOpenEditor(false)
+      setSeleccionado(null)
+      cargarProductos()
     } catch (error) {
       console.log(error.message);
     }
   };
 
   const eliminarProducto = async (id) => {
-    const confirmar = window.confirm("Estas seguro de eliminar el producto?");
+    const confirmar = window.confirm("Estas seguro de eliminar el producto?")
     if (confirmar) {
       try {
         const respuesta = await fetch(
-          `https://682e2f0e746f8ca4a47c2dbd.mockapi.io/product/${id}`,
+          `https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos/${id}`,
           {
             method: "DELETE",
           }
@@ -103,7 +103,7 @@ export const AdminProvider = ({ children }) => {
           text: "Producto Eliminado correctamente!",
           icon: "error",
         });
-        cargarProductos();
+        cargarProductos()
       } catch (error) {
         alert("Hubo un problema al eliminar el producto");
       }

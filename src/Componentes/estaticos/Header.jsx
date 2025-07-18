@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./stylesEstatico.css";
 import Cart from "../Cart.jsx";
+import { FaShoppingCart } from 'react-icons/fa'  //ver de donde sale esto
 
 const Header = () => {
   const [isCartOpen, setCartOpen] = useState(false);
@@ -14,24 +15,24 @@ const Header = () => {
             <img className="logo" src="/src/assets/img/logo.png" alt="logo" />
           </li>
           <li>
-            <Link to="/" className="link">
+            <NavLink to="/" className="link">
               Inicio
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/acercade" className="link">
+            <NavLink to="/acercade" className="link">
               Sobre nosotros
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/productos" className="link">
+            <NavLink to="/productos" className="link">
               Galería de productos
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/contacto" className="link">
+            <NavLink to="/contacto" className="link">
               Contacto
-            </Link>
+            </NavLink>
           </li>
           <li className="cart__nav">
             <button className=" btncart" onClick={() => setCartOpen(true)}>
@@ -40,14 +41,14 @@ const Header = () => {
             <Cart isOpen={isCartOpen} onClose={() => setCartOpen(false)} />
           </li>
           <li className="btnLogin">
-            <Link to="/login" className="link">
+            <NavLink to="/login" className="link">
               <i className="fa-solid fa-right-to-bracket"></i>
-            </Link>
+            </NavLink>
           </li>
           <li className="btnAdmin">
-            <Link to="/admin" className="link">
+            <NavLink to="/admin" className="link">
               <i className="fa-solid fa-user-tie"></i>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -5,9 +5,7 @@ import ProductList from "../Componentes/ProductList";
 import loading from "../assets/cargando.gif";
 import { CartContext } from "../context/CartContext";
 
-const GaleriaDeProductos = () => {
-
-  const {cargando} = useContext(CartContext)
+const GaleriaDeProductos = ({cargando}) => {
   
   return (
     <>

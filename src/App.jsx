@@ -13,6 +13,7 @@ import RutaProtegida from './Rutas/RutasProtegidas'
 import { CartContext } from './context/CartContext'
 
 
+
 function App() {
   const { isAuthenticated } = useContext(CartContext);
 

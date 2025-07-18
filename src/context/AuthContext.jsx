@@ -1,4 +1,4 @@
-import { createContext, useContext, useState} from "react";
+import { createContext, useContext, useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from './CartContext';
 
@@ -9,7 +9,18 @@ export const AuthProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
   const navigate = useNavigate();
-  const { setIsAuth } = useContext(CartContext);
+  const { setIsAuth } = useContext(AuthContext);
+  
+
+  useEffect(()=>{
+    const isAuthenticated = localStorage.getItem('isAuth') === 'true'
+    if(isAuthenticated){
+      setIsAuth(true)
+      navigate('/admin')
+    }
+  },[])
+
+
 
   const handleSubmit = async (e) => {
     //esto analiza que no este vacio
@@ -37,12 +48,14 @@ export const AuthProvider = ({ children }) => {
       } else {
         if (foundUser.role === "admin") {
           setIsAuth(true);
+          localStorage.setItem('isAuth', true)
           navigate("/admin");
         } else {
           navigate("/");
         }
       }
     } catch (err) {
+      console.error('Error fetching users:', err);
       setError({ email: "Error al iniciar sesión, intente más tarde" });
     }
   };
