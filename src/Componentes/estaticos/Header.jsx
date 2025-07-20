@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./stylesEstatico.css";
 import Cart from "../Cart.jsx";
-import { FaShoppingCart } from 'react-icons/fa'  //ver de donde sale esto
+
+import { FaShoppingCart } from "react-icons/fa"; //ver de donde sale esto
 
 const Header = () => {
+  
   const [isCartOpen, setCartOpen] = useState(false);
 
   return (

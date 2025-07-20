@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-export const AdminContext = createContext();
+export const AdminContext = createContext()
 
 export const AdminProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
@@ -53,7 +53,7 @@ export const AdminProvider = ({ children }) => {
       if (!respuesta.ok) {
         throw new Error("Error al agregar producto");
       }
-      const data = await respuesta.json();
+      const data = await respuesta.json()
       Swal.fire({
         title: ":)!",
         text: "Producto agregado correctamente!",

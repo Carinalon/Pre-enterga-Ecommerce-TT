@@ -5,22 +5,19 @@ import { CartContext } from './CartContext';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
- const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
   const navigate = useNavigate();
   const { setIsAuth } = useContext(AuthContext);
-  
 
-  useEffect(()=>{
-    const isAuthenticated = localStorage.getItem('isAuth') === 'true'
-    if(isAuthenticated){
-      setIsAuth(true)
-      navigate('/admin')
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuth") === "true";
+    if (isAuthenticated) {
+      setIsAuth(true);
+      navigate("/admin");
     }
-  },[])
-
-
+  }, [])
 
   const handleSubmit = async (e) => {
     //esto analiza que no este vacio
@@ -46,23 +43,25 @@ export const AuthProvider = ({ children }) => {
       if (!foundUser) {
         setError({ email: "credenciales inválidas" });
       } else {
+        console.log("User role:", foundUser.role);
+
         if (foundUser.role === "admin") {
           setIsAuth(true);
-          localStorage.setItem('isAuth', true)
+          localStorage.setItem("isAuth", true);
           navigate("/admin");
         } else {
           navigate("/");
         }
       }
     } catch (err) {
-      console.error('Error fetching users:', err);
+      console.error("Error fetching users:", err);
       setError({ email: "Error al iniciar sesión, intente más tarde" });
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ email, setEmail, password, setPassword, handleSubmit, error }}
+      value={{ email, setEmail, password, setPassword, handleSubmit, error, setIsAuth }}
     >
       {children}
     </AuthContext.Provider>

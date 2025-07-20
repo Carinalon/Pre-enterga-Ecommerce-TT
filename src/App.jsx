@@ -1,18 +1,16 @@
-import { useContext } from 'react'
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import AcercaDe from './pages/AcercaDe'
-import GaleriaDeProductos from './pages/GaleriaDeProductos'
-import Contacto from './pages/Contacto'
-import NotFound from './pages/NotFound'
-import Admin from './pages/Admin'
-import DetallesProductos from './Componentes/DetallesProductos'
-import Login from './pages/Login'
-import RutaProtegida from './Rutas/RutasProtegidas'
-import { CartContext } from './context/CartContext'
-
-
+import { useContext } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import AcercaDe from "./pages/AcercaDe";
+import GaleriaDeProductos from "./pages/GaleriaDeProductos";
+import Contacto from "./pages/Contacto";
+import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
+import DetallesProductos from "./Componentes/DetallesProductos";
+import Login from "./pages/Login";
+import RutaProtegida from "./Rutas/RutasProtegidas";
+import { CartContext } from "./context/CartContext";
 
 function App() {
   const { isAuthenticated } = useContext(CartContext);
@@ -25,14 +23,16 @@ function App() {
 
       <Route path="/productos" element={<GaleriaDeProductos />} />
 
-      <Route path="/productos/:id" element={<DetallesProductos />} />
+      <Route path="/productos/:id" element={<DetallesProductos />} />  
 
       <Route path="/contacto" element={<Contacto />} />
 
-      <Route path="/admin" element={
-          <RutaProtegida isAuthenticated={isAuthenticated}>
+      <Route
+        path="/admin" element={ <RutaProtegida isAuthenticated={isAuthenticated}>
             <Admin />
-          </RutaProtegida>}/>
+          </RutaProtegida>
+        }
+      />
 
       <Route path="/login" element={<Login />} />
 

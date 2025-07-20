@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export const CartContext = createContext();
+export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
@@ -28,12 +28,15 @@ export const CartProvider = ({ children }) => {
         console.log("Error", error);
         setCargando(false);
         setError(true);
-      });
-  }, []);
+      })
+
+  }, [])
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+
 
   const productosFiltrados = productos.filter((producto) =>
     producto?.nombre.toLowerCase().includes(busqueda.toLowerCase())
@@ -72,6 +75,13 @@ export const CartProvider = ({ children }) => {
         })
         .filter((item) => item != null);
     });
+  };
+
+  const clearCart = () => {
+    setCart([])
+    localStorage.removeItem("cart")
+    toast.info("Compra finalizada con éxito");
+    
   };
 
   return (

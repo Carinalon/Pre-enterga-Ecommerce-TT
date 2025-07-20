@@ -18,7 +18,7 @@ const Admin = () => {
     seleccionado,
     setSeleccionado,
     agregarProducto,
-    actulizarProducto,
+    actualizarProducto,
     eliminarProducto,
   } = useContext(AdminContext);
 
@@ -61,8 +61,7 @@ const Admin = () => {
                 <span>${product.precio}</span>
                 <div>
                   <button
-                    className="editButton"
-                    onClick={() => {
+                    className="editButton" onClick={() => {
                       setOpenEditor(true);
                       setSeleccionado(product);
                     }}>Editar</button>
