@@ -4,6 +4,7 @@ import FormularioEdicion from "../Componentes/Admin/FormularioEdicion";
 import { CartContext } from "../context/CartContext";
 import { AdminContext } from "../context/AdminContext";
 import { useNavigate } from "react-router-dom";
+import "/src/pages/stylesAdmin.css";
 
 const Admin = () => {
   const { setIsAuth } = useContext(CartContext);
