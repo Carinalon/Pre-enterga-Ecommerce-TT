@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(false);
-  const [isAuthenticated, setIsAuth] = useState("false"); // Para la autenticación
+  const [isAuthenticated, setIsAuth] = useState(false); // Para la autenticación
   const [busqueda, setBusqueda] = useState(""); // Para la búsqueda de productos
 
   useEffect(() => {
@@ -43,15 +43,11 @@ export const CartProvider = ({ children }) => {
   );
 
   const handleAddToCart = (product) => {
+
     const productInCart = cart.find((item) => item.id === product.id);
     if (productInCart) {
-      setCart(
-        cart.map((item) =>
-          item.id === product.id
-            ? { ...item, cantidad: product.cantidad }
-            : item
-        )
-      );
+      setCart(cart.map((item) => item.id === product.id ? { ...item, cantidad: product.cantidad }
+            : item));
     } else {
       toast.success(`El producto ${product.nombre} se ha agregado al carrito`);
       setCart([...cart, { ...product, cantidad: product.cantidad }]);

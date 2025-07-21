@@ -1,18 +1,20 @@
 import { createContext, useContext, useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from './CartContext';
+import { CartContext } from "./CartContext";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
   const navigate = useNavigate();
-  const { setIsAuth } = useContext(AuthContext);
+  const { setIsAuth } = useContext(CartContext);
+
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem("isAuth") === "true";
+    const isAuthenticated = localStorage.getItem('isAuth') === "true";
     if (isAuthenticated) {
       setIsAuth(true);
       navigate("/admin");
@@ -47,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
         if (foundUser.role === "admin") {
           setIsAuth(true);
-          localStorage.setItem("isAuth", true);
+          localStorage.setItem('isAuth', true);
           navigate("/admin");
         } else {
           navigate("/");

@@ -4,11 +4,16 @@ import { CartContext } from "../context/CartContext";
 
 
 const ProductList = () => {
-  const { productos } = useContext(CartContext);
+  const { productos, productosFiltrados, busqueda, setBusqueda } = useContext(CartContext);
 
   return (
     <>
       <h2 className="titulo__Gal">Galería de Productos</h2>
+      <input
+        type="text"
+        placeholder="Buscar productos..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}/>
       <div
         style={{
           display: "flex",
@@ -17,7 +22,7 @@ const ProductList = () => {
           gap: "20px",
         }}
       >
-        {productos.map((producto) => (
+        {productosFiltrados.map((producto) => (
           <Productos key={producto.id} producto={producto} />
           // Aquí se pasa el producto individual a cada componente Productos
         ))}

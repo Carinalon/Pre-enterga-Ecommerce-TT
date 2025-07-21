@@ -25,10 +25,8 @@ const Admin = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="container">
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
+    <div className="container">{loading ? (
+       <p>Cargando...</p>) : (
         <>
           <nav>
             <ul className="nav">

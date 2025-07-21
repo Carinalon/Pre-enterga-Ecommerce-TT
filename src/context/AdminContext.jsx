@@ -9,11 +9,10 @@ export const AdminProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [seleccionado, setSeleccionado] = useState(null);
   const [openEditor, setOpenEditor] = useState(false);
-  const apiUrl =
-    "https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos";
+  
 
   useEffect(() => {
-    fetch(apiUrl)
+    fetch("/data/data.json")
       .then((response) => response.json())
       .then((data) => {
         setTimeout(() => {
@@ -66,7 +65,7 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
-  const actulizarProducto = async (producto) => {
+  const actualizarProducto = async (producto) => {
     try {
       const respuesta = await fetch(`${apiUrl}/${producto.id}`, {
         method: "PUT",
@@ -91,19 +90,19 @@ export const AdminProvider = ({ children }) => {
     if (confirmar) {
       try {
         const respuesta = await fetch(
-          `https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos/${id}`,
+          `https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos/ ${id}`,
           {
             method: "DELETE",
-          }
-        );
+          })
         if (!respuesta.ok) throw Error("Error al eliminar");
-
+        
         Swal.fire({
           title: ":(!",
           text: "Producto Eliminado correctamente!",
           icon: "error",
         });
         cargarProductos()
+
       } catch (error) {
         alert("Hubo un problema al eliminar el producto");
       }
@@ -111,8 +110,7 @@ export const AdminProvider = ({ children }) => {
   };
 
   return (
-    <AdminContext.Provider
-      value={{
+    <AdminContext.Provider value={{
         productos,
         loading,
         open,
@@ -122,7 +120,7 @@ export const AdminProvider = ({ children }) => {
         seleccionado,
         setSeleccionado,
         agregarProducto,
-        actulizarProducto,
+        actualizarProducto,
         eliminarProducto,
       }}
     >
