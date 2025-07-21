@@ -1,12 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : []
+    return savedCart ? JSON.parse(savedCart) : [];
   });
 
   const [productos, setProductos] = useState([]);
@@ -28,26 +28,27 @@ export const CartProvider = ({ children }) => {
         console.log("Error", error);
         setCargando(false);
         setError(true);
-      })
-
-  }, [])
+      });
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-
-
 
   const productosFiltrados = productos.filter((producto) =>
     producto?.nombre.toLowerCase().includes(busqueda.toLowerCase())
   );
 
   const handleAddToCart = (product) => {
-
     const productInCart = cart.find((item) => item.id === product.id);
     if (productInCart) {
-      setCart(cart.map((item) => item.id === product.id ? { ...item, cantidad: product.cantidad }
-            : item));
+      setCart(
+        cart.map((item) =>
+          item.id === product.id
+            ? { ...item, cantidad: product.cantidad }
+            : item
+        )
+      );
     } else {
       toast.success(`El producto ${product.nombre} se ha agregado al carrito`);
       setCart([...cart, { ...product, cantidad: product.cantidad }]);
@@ -74,10 +75,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    setCart([])
-    localStorage.removeItem("cart")
+    setCart([]);
+    localStorage.removeItem("cart");
     toast.info("Compra finalizada con éxito");
-    
   };
 
   return (
@@ -94,7 +94,6 @@ export const CartProvider = ({ children }) => {
         productosFiltrados,
         busqueda,
         setBusqueda,
-        
       }}
     >
       {children}

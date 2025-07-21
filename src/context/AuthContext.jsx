@@ -1,25 +1,32 @@
-import { createContext, useContext, useState, useEffect} from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
   const navigate = useNavigate();
   const { setIsAuth } = useContext(CartContext);
+  const [role, setRole] = useState("");
 
-
+  
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuth') === "true";
-    if (isAuthenticated) {
+    const isAuthenticated = localStorage.getItem("isAuth") === "true";
+    const userRole = localStorage.getItem("role") || "";
+    if (isAuthenticated && userRole === "admin") {
       setIsAuth(true);
+      setRole(userRole);
       navigate("/admin");
+    } else if (isAuthenticated && userRole === "cliente") {
+      setIsAuth(true);
+      setRole(userRole);
+
+      navigate("/");
     }
-  }, [])
+  }, []);
 
   const handleSubmit = async (e) => {
     //esto analiza que no este vacio
@@ -49,10 +56,14 @@ export const AuthProvider = ({ children }) => {
 
         if (foundUser.role === "admin") {
           setIsAuth(true);
-          localStorage.setItem('isAuth', true);
+          localStorage.setItem("isAuth", true);
+          localStorage.setItem("role", foundUser.role);
           navigate("/admin");
         } else {
-          navigate("/");
+          setIsAuth(true);
+          localStorage.setItem('isAuth', true)
+          localStorage.setItem('role', foundUser.role);
+          navigate('/');
         }
       }
     } catch (err) {
@@ -63,7 +74,9 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ email, setEmail, password, setPassword, handleSubmit, error, setIsAuth }}
+      value={{
+        email, setEmail,password, setPassword, handleSubmit,error,role
+      }}
     >
       {children}
     </AuthContext.Provider>
