@@ -9,9 +9,10 @@ export const AdminProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [seleccionado, setSeleccionado] = useState(null);
   const [openEditor, setOpenEditor] = useState(false);
+  const apiUrl = "https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos"
 
   useEffect(() => {
-    fetch("/data/data.json")
+    fetch("https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos")
       .then((response) => response.json())
       .then((data) => {
         setTimeout(() => {
@@ -28,9 +29,7 @@ export const AdminProvider = ({ children }) => {
 
   const cargarProductos = async () => {
     try {
-      const res = await fetch(
-        "https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos"
-      );
+      const res = await fetch(apiUrl);
       const data = await res.json();
       setProductos(data);
     } catch (error) {
@@ -40,7 +39,7 @@ export const AdminProvider = ({ children }) => {
 
   const agregarProducto = async (producto) => {
     try {
-      const respuesta = await fetch("/data/data.json", {
+      const respuesta = await fetch("https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,10 +64,7 @@ export const AdminProvider = ({ children }) => {
 
   const actualizarProducto = async (producto) => {
     try {
-      const respuesta = await fetch(
-        `${"/https://683b8fd928a0b0f2fdc4efdc.mockapi.io/productos-ecommerce/productos"}/${
-          producto.id
-        }`,
+      const respuesta = await fetch(`${apiUrl}/${producto.id}`,
         {
           method: "PUT",
           headers: {
