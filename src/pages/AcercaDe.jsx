@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../Componentes/estaticos/Header'
 import Footer from '../Componentes/estaticos/Footer'
-import './styleAcercaD.css'
+import './StyleAcercaD.css'
 
 const AcercaDe = () => {
   return (
