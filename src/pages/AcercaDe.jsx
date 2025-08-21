@@ -17,7 +17,7 @@ const AcercaDe = () => {
           placeat harum omnis sequi iste at voluptatum numquam laboriosam porro
           corporis est eius nulla quasi nam accusantium natus eaque architecto!
         </p>
-        <img src="/src/assets/img/Emma.png" alt="Foto de Emma" />
+        <img src="/public/img/Emma.png" alt="Foto de Emma" />
       </main>
       <Footer />
     </>

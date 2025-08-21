@@ -10,7 +10,7 @@ const Contacto = () => {
       <div className='contenedor__contacto' >
         <h1 className="titulo__home">Hola soy Emma</h1>
         <h2>Esta es mi pagina de contacto</h2>
-        <img src="/src/assets/img/Emma.png" alt="Foto de Emma" />
+        <img src="/img/Emma.png" alt="Foto de Emma" />
         <form className="form" action="">
           <label htmlFor="nombre">Nombre:</label>
           <input type="text" id="nombre" name="nombre" required />

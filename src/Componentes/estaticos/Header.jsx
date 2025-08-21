@@ -14,7 +14,7 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <img className="logo" src="/src/assets/img/logo.png" alt="logo" />
+            <img className="logo" src="/public/img/logo.png" alt="logo" />
           </li>
           <li>
             <NavLink to="/" className="link">
